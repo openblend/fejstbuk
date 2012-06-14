@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -12,14 +13,24 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class User extends AbstractEntity {
+    private String status;
     private String name;
     private String surname;
     private Date birth;
     private Gender gender;
     private String location;
+    private User relationship;
     private Set<User> friends;
     private Set<Post> posts;
     private Set<Like> likes;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getName() {
         return name;
@@ -59,6 +70,15 @@ public class User extends AbstractEntity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @ManyToOne
+    public User getRelationship() {
+        return relationship;
+    }
+
+    public void setRelationship(User relationship) {
+        this.relationship = relationship;
     }
 
     @ManyToMany // TODO - is this ok?
