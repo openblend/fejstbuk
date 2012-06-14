@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
 @MappedSuperclass
-public class Owned extends AbstractEntity {
+public abstract class Owned extends AbstractEntity {
     private User user;
     private Date timestamp;
 

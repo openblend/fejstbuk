@@ -7,7 +7,10 @@ import javax.ejb.Local;
 import org.openblend.fejstbuk.domain.Comment;
 import org.openblend.fejstbuk.domain.Image;
 import org.openblend.fejstbuk.domain.Like;
+import org.openblend.fejstbuk.domain.Linked;
 import org.openblend.fejstbuk.domain.Post;
+import org.openblend.fejstbuk.domain.Question;
+import org.openblend.fejstbuk.domain.Status;
 import org.openblend.fejstbuk.domain.User;
 
 /**
@@ -19,11 +22,15 @@ public interface CustomDAO extends GenericDAO {
 
     void removeFriend(User owner, User friend);
 
-    List<Post> wall(User owner, int offset, int size);
+    List<Linked> wall(User owner, int offset, int size);
 
-    Comment addComment(User owner, String text);
+    Status addStatus(User owner, String status);
 
     Image addImage(User owner, byte[] image);
+
+    Question addQuestion(User owner, String question);
+
+    Comment addComment(Linked linked, User user, String comment);
 
     void removePost(Post post);
 

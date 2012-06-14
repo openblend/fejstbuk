@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class User extends AbstractEntity {
-    private String status;
     private String name;
     private String surname;
     private Date birth;
@@ -21,16 +20,9 @@ public class User extends AbstractEntity {
     private String location;
     private User relationship;
     private Set<User> friends;
-    private Set<Post> posts;
+    private Set<Linked> posts;
+    private Set<Comment> comments;
     private Set<Like> likes;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getName() {
         return name;
@@ -91,12 +83,21 @@ public class User extends AbstractEntity {
     }
 
     @OneToMany(mappedBy = "user")
-    public Set<Post> getPosts() {
+    public Set<Linked> getPosts() {
         return posts;
     }
 
-    public void setPosts(Set<Post> posts) {
+    public void setPosts(Set<Linked> posts) {
         this.posts = posts;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     @OneToMany(mappedBy = "user")

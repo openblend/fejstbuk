@@ -9,7 +9,7 @@ import javax.persistence.Lob;
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
  */
 @Entity
-public class Image extends Comment {
+public class Image extends Linked {
     private Blob image;
 
     @Lob
