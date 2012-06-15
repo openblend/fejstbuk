@@ -1,5 +1,6 @@
 package org.openblend.fejstbuk.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.StatelessSession;
@@ -25,6 +26,8 @@ public interface GenericDAO {
     <T extends AbstractEntity> int delete(Class<T> clazz, Long id);
 
     <T extends AbstractEntity> void initialize(T entity);
+
+    <T extends Collection> void initializeCollection(T collection);
 
     StatelessSession statelessView();
 }

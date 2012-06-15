@@ -75,6 +75,10 @@ public abstract class AbstractGenericDAO implements GenericDAO {
         Hibernate.initialize(entity);
     }
 
+    public <T extends Collection> void initializeCollection(T collection) {
+        Hibernate.initialize(collection);
+    }
+
     public StatelessSession statelessView() {
         Session session = (Session) getEM().getDelegate();
         return session.getSessionFactory().openStatelessSession();
