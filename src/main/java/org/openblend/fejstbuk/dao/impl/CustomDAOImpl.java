@@ -171,4 +171,11 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
             }
         }
     }
+
+    public User findUser(String username, String password) {
+        Query query = getEM().createQuery("select u from User u where u.username = :u and u.password = :p");
+        query.setParameter("u", username);
+        query.setParameter("p", password);
+        return getSingleResult(query);
+    }
 }
