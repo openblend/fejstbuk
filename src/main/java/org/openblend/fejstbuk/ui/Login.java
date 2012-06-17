@@ -10,6 +10,7 @@ import javax.inject.Named;
 import org.openblend.fejstbuk.dao.CustomDAO;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.Current;
+import org.openblend.fejstbuk.util.SecurityUtils;
 
 /**
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
@@ -30,7 +31,13 @@ public class Login implements Serializable {
     }
 
     public boolean login(String username, String password) {
-        current = dao.findUser(username, password);
+        User user = dao.findUser(username);
+        if (user != null) {
+            String hashed = SecurityUtils.hash(username, password);
+            if (hashed.equals(user.getPassword())) {
+                current = user;
+            }
+        }
         return (current != null);
     }
 

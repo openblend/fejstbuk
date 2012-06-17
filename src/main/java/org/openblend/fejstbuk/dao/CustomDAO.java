@@ -38,5 +38,5 @@ public interface CustomDAO extends GenericDAO {
 
     void unlike(Like like);
 
-    User findUser(String username, String password);
+    User findUser(String username);
 }
