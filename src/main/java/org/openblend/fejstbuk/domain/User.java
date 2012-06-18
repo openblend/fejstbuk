@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Where;
 
 /**
  * @author <a href="mailto:ales.justin@jboss.org">Ales Justin</a>
@@ -84,7 +87,9 @@ public class User extends AbstractEntity {
         this.friends = friends;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
+    @JoinColumn(name="user_id", insertable=false, updatable=false)
+    @Where(clause="dtype='Status' or dtype='Image' or dtype='Question'")
     public Set<Linked> getPosts() {
         return posts;
     }
@@ -93,7 +98,9 @@ public class User extends AbstractEntity {
         this.posts = posts;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
+    @JoinColumn(name="user_id", insertable=false, updatable=false)
+    @Where(clause="dtype='Comment'")
     public Set<Comment> getComments() {
         return comments;
     }
