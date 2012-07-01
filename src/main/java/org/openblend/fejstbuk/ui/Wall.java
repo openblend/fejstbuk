@@ -21,7 +21,7 @@ import org.openblend.fejstbuk.domain.User;
 @ConversationScoped
 @Named("wall")
 public class Wall extends AbstractUI {
-    private static final int SIZE = 20;
+    public static final int SIZE = 20;
 
     public List<Linked> getWall(int start) {
         return dao.wall(current, start, SIZE);
