@@ -6,7 +6,6 @@
              version="2.0">
 
     <persistence-unit name="fejstbuk">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
         <class>org.openblend.fejstbuk.domain.AbstractEntity</class>
         <class>org.openblend.fejstbuk.domain.Comment</class>
