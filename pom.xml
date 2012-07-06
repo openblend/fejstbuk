@@ -36,6 +36,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jboss-as-maven-plugin-version>7.1.1.Final</jboss-as-maven-plugin-version>
+        <javax.project.stage>Development</javax.project.stage>
     </properties>
 
     <build>
@@ -69,6 +70,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <force>true</force>
+                </configuration>
+
             </plugin>
         </plugins>
     </build>
@@ -167,6 +172,25 @@
                 <version>${version.org.jboss.resteasy}</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>com.ocpsoft</groupId>
+                <artifactId>prettyfaces-jsf2</artifactId>
+                <version>3.3.3</version>
+                <exclusions>
+                    <!--exclusion>
+                        <groupId>commons-digester</groupId>
+                        <artifactId>commons-digester</artifactId>
+                    </exclusion-->
+                    <exclusion>
+                        <groupId>commons-beanutils</groupId>
+                        <artifactId>commons-beanutils</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -233,6 +257,10 @@
             <artifactId>resteasy-jaxrs</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.ocpsoft</groupId>
+            <artifactId>prettyfaces-jsf2</artifactId>
+        </dependency>
     </dependencies>
 
 

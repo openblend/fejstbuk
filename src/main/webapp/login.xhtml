@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+        >
+
+<ui:composition template="/layout/template.xhtml">
+    <ui:define name="sidebar">
+        <h:form>
+            <h:inputText label="Username" id="username" />
+            <h:inputText label="Password" id="password" />
+            <h:commandLink action="#{login.logout}" value="Logout" />
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        Fejstbuk -- 2012
+        <p/>
+    </ui:define>
+</ui:composition>
+</html>

@@ -14,12 +14,12 @@ public class Profile extends AbstractUI {
     public String addFriend(long friendId) {
         User friend = dao.find(User.class, friendId);
         dao.addFriend(current, friend);
-        return "home.jsf";
+        return "home.xhtml";
     }
 
     public String removeFriend(long friendId) {
         User friend = dao.find(User.class, friendId);
         dao.removeFriend(current, friend);
-        return "home.jsf";
+        return "home.xhtml";
     }
 }

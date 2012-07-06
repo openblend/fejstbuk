@@ -19,13 +19,18 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     </servlet>
 
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>${javax.project.stage}</param-value>
+    </context-param>
+
     <!-- Filters -->
 
     <!-- Servlet mapping -->
 
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.jsf</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
     <!-- Security -->
@@ -49,7 +54,7 @@
     <!-- Session config -->
 
     <session-config>
-        <session-timeout>10</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 
 </web-app>
