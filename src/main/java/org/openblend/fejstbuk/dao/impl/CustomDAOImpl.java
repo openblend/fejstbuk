@@ -54,7 +54,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
     }
 
     public List<Linked> wall(User owner, int offset, int size) {
-        Query query = getEM().createQuery("select Linked l where l.user = :owner order by l.timestamp desc");
+        Query query = getEM().createQuery("select l from Linked l where l.user = :owner order by l.timestamp desc");
         query.setParameter("owner", owner);
         query.setFirstResult(offset);
         query.setMaxResults(size);

@@ -7,15 +7,14 @@
 
 <ui:composition template="/layout/template.xhtml">
     <ui:define name="sidebar">
-        <h:form>
-            <h:inputText label="Username" id="username" />
-            <h:inputText label="Password" id="password" />
-            <h:commandLink action="#{login.logout}" value="Logout" />
-        </h:form>
+
     </ui:define>
     <ui:define name="content">
-        Fejstbuk -- 2012
-        <p/>
+        <h:form>
+            <h:inputText label="Username" id="username"/>
+            <h:inputText label="Password" id="password"/>
+            <h:commandLink action="#{login.logout}" value="Logout"/>
+        </h:form>
     </ui:define>
 </ui:composition>
 </html>
