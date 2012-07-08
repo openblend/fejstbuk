@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,6 +20,9 @@ import org.openblend.fejstbuk.util.SecurityUtils;
 @SessionScoped
 @Named("login")
 public class Login implements Serializable {
+
+    @Inject private Credentials credentials;
+
     private User current;
     private CustomDAO dao;
 
@@ -39,6 +44,19 @@ public class Login implements Serializable {
             }
         }
         return (current != null);
+    }
+
+    public void uiLogin() {
+        boolean ret = login(credentials.getUsername(), credentials.getPassword());
+        if (ret) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Welcome, " + current.getName()));
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Authentication failed!"));
+        }
+
     }
 
     public void logout() {
