@@ -7,21 +7,10 @@
 
     <persistence-unit name="fejstbuk">
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-        <!--<class>org.openblend.fejstbuk.domain.AbstractEntity</class>
-        <class>org.openblend.fejstbuk.domain.Comment</class>
-        <class>org.openblend.fejstbuk.domain.Image</class>
-        <class>org.openblend.fejstbuk.domain.Like</class>
-        <class>org.openblend.fejstbuk.domain.Linked</class>
-        <class>org.openblend.fejstbuk.domain.Owned</class>
-        <class>org.openblend.fejstbuk.domain.Post</class>
-        <class>org.openblend.fejstbuk.domain.Question</class>
-        <class>org.openblend.fejstbuk.domain.Status</class>
-        <class>org.openblend.fejstbuk.domain.User</class>-->
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <properties>
-            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.cache.use_second_level_cache" value="true"/>

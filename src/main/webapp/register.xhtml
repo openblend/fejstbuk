@@ -10,6 +10,41 @@
 
     </ui:define>
     <ui:define name="content">
+        <h1>Register</h1>
+        <form method="post" action="#">
+            <fieldset>
+                <ol>
+                    <li>
+                        <label for="name" class="mainlabel">Name:</label>
+                        <input id="name" type="text" />
+                    </li>
+                    <li>
+                        <label for="lastname" class="mainlabel">Last name:</label>
+                        <input id="lastname" type="text" />
+                    </li>
+                    <li>
+                        <label for="age" class="mainlabel">Age:</label>
+                        <input id="age" type="text" />
+                    </li>
+                    <li>
+                        <label class="mainlabel">Gender:</label>
+                        <input id="male" name="gender" type="radio" />
+                        <label for="male">male</label>
+                        <input id="female" name="gender" type="radio" />
+                        <label for="female">female</label>
+                    </li>
+                    <li>
+                        <label for="country" class="mainlabel">Country:</label>
+                        <select id="country">
+                            <option>USA</option>
+                            <option>Germany</option>
+                            <option>Austria</option>
+                        </select>
+                    </li>
+                </ol>
+                <input type="submit" value="Save changes" />
+            </fieldset>
+        </form>
         <h:form>
             <h:inputText label="Username" id="username"/>
             <h:inputText label="Password" id="password"/>
