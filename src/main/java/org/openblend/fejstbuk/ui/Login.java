@@ -48,11 +48,7 @@ public class Login implements Serializable {
 
     public void uiLogin() {
         boolean ret = login(credentials.getUsername(), credentials.getPassword());
-        if (ret) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Welcome, " + current.getName()));
-        }
-        else {
+        if (!ret) {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Authentication failed!"));
         }
