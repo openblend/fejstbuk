@@ -10,11 +10,24 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form>
-            <h:inputText label="Username" id="username"/>
-            <h:inputText label="Password" id="password"/>
-            <h:commandLink action="#{login.logout}" value="Logout"/>
-        </h:form>
+        <ui:fragment rendered="#{!login.logged}">
+            <h:form>
+                <h:outputLabel for="username">Username:</h:outputLabel>
+                <h:inputText id="username" value="#{credentials.username}"/>
+
+                <h:outputLabel for="password">Password:</h:outputLabel>
+                <h:inputSecret id="password" value="#{credentials.password}"/>
+
+                <h:commandLink action="#{login.uiLogin}" value="Login"/>
+            </h:form>
+        </ui:fragment>
+        <ui:fragment rendered="#{login.logged}">
+            <span>You are logged in already.</span>
+            <h:form>
+                <h:commandLink action="#{login.logout}" value="Logout"/>
+            </h:form>
+        </ui:fragment>
+        <h:messages/>
     </ui:define>
 </ui:composition>
 </html>
