@@ -22,7 +22,7 @@
             </h:form>
         </ui:fragment>
         <ui:fragment rendered="#{login.logged}">
-            <span>You are logged in already.</span>
+            <span>You are logged in as #{login.current.name} #{login.current.surname}.</span>
             <h:form>
                 <h:commandLink action="#{login.logout}" value="Logout"/>
             </h:form>
