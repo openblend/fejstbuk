@@ -79,6 +79,11 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                    <archive>
+                        <manifestEntries>
+                            <Dependencies>com.h2database.h2</Dependencies>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
