@@ -8,43 +8,7 @@
 <ui:composition template="/layout/template.xhtml">
     <ui:define name="pageTitle">Home</ui:define>
     <ui:define name="sidebar">
-        <div id="profile">
-                <span class="photo">
-                    <img src="/_common/images/tmp/avatar-1-m.jpg" alt="Lt. Aldo Raine" />
-                </span>
-                <span class="name">Lt. Aldo Raine</span>
-                <span class="asl">39, male, USA</span>
-                <dl class="friendcount">
-                    <dt>Friends:</dt>
-                    <dd>4</dd>
-                </dl>
-                <a class="edit-profile" href="/profile-edit.html">Edit my profile</a>
-            </div>
-            <ul class="notifications">
-                <li class="notification">
-                    <span class="photo">
-                        <img src="/_common/images/tmp/avatar-2-s.jpg" alt="Col. Hans Landa" />
-                    </span>
-                    <div class="cms">
-                        You have a new friend request from <a href="profile-friend.html">Col. Hans Landa</a>.
-                        <strong><a class="ajax" href="/_ajax_friendrequest-confirm.html">Confirm or deny</a></strong>
-                    </div>
-                </li>
-                <li class="notification">
-                    <span class="photo">
-                        <img src="/_common/images/tmp/avatar-5-s.jpg" alt="Bridget von Hammersmark" />
-                    </span>
-                    <div class="cms">
-                        You have a 1 new message from <a href="profile-friend.html">Bridget von Hammersmark</a>.
-                        <strong><a href="/messages.html">View</a></strong>
-                    </div>
-                </li>
-            </ul>
-            <ul class="main-nav">
-                <li><a href="/profile.html">My profile</a></li>
-                <li class="active"><a href="/front.html">News feed<em>53</em></a></li>
-                <li><a href="/messages.html">Messages<em>3</em></a></li>
-            </ul>
+        <ui:include src="/includes/profile.xhtml" />
     </ui:define>
     <ui:define name="content">
         <h1>News feed</h1>

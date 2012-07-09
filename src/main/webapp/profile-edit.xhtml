@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+
+<ui:composition template="/layout/template.xhtml">
+   <ui:define name="head">
+	   <script src="/_common/js/fileuploader.js" type="text/javascript"></script>
+	   <script>        
+	       function createUploader(){            
+	           var uploader = new qq.FileUploader({
+	               element: document.getElementById('file-uploader'),
+	               action: '/rest/file/upload-avatar',
+	               debug: true
+	           });           
+	       }
+	       
+	       // in your app create uploader as soon as the DOM is ready
+	       // don't wait for the window to load  
+	       window.onload = createUploader;     
+	   </script>
+	   <link type="text/css" rel="stylesheet" media="screen,projection" href="/_common/css/fileuploader.css" />
+   </ui:define>
+
+    <ui:define name="pageTitle">Profile</ui:define>
+
+    <ui:define name="sidebar">
+        <ui:include src="/includes/profile.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        <h1>Edit profile</h1>
+        <h:form>
+            <fieldset>
+               <div id="file-uploader" style="float: left;">      
+                  <noscript>        
+                     <p>Please enable JavaScript to use file uploader.</p>
+                     <!-- or put a simple form for upload here -->
+                  </noscript>         
+               </div>            
+               <ol>
+                  <li>
+                     <h:outputLabel value="Name:" styleClass="mainlabel" />
+			            <h:inputText value="#{profileEdit.current.name}" />
+                  </li>
+                  <li>
+			            <h:outputLabel value="Last name:" styleClass="mainlabel" />
+			            <h:inputText value="#{profileEdit.current.surname}" />
+                  </li>
+                  <li>
+                     <h:outputLabel value="Birth date:" styleClass="mainlabel" />
+                     <h:inputText value="#{profileEdit.current.birth}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                     </h:inputText>
+                  </li>
+                  <li>
+                     <h:outputLabel value="Gender:" styleClass="mainlabel" />
+                     <h:selectOneRadio value="#{profileEdit.current.gender}" layout="pageDirection" style="clear: none; width: 70%">
+                        <f:selectItems value="#{profileEdit.genderItems}" />
+                     </h:selectOneRadio>
+                  </li>
+                  <li>
+                     <h:outputLabel value="Location:" styleClass="mainlabel" />
+                     <h:inputText value="#{profileEdit.current.location}" />
+                  </li>
+               </ol>            
+               <br style="clear: both;"/>
+               <h:messages />
+               <h:commandButton value="Save changes" action="#{profileEdit.save}" />
+            </fieldset>
+         </h:form>
+    </ui:define>
+</ui:composition>
+</html>
