@@ -30,8 +30,8 @@ public class NewsAction {
     @Produces
     @Named
     public List<Post> getNewsFeed() {
-        TypedQuery<Post> q = em.createQuery("select p from Post p where p.user = :user", Post.class);
-        q.setParameter("user", user);
+        TypedQuery<Post> q = em.createQuery("select p from Post p where p.user.id = :userId", Post.class);
+        q.setParameter("userId", user.getId());
         return q.getResultList();
     }
 
