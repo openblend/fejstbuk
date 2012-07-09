@@ -9,7 +9,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -18,17 +17,17 @@ import javax.ws.rs.core.Response;
  */
 @Path("/file")
 @Local
-public interface RestfullFileIO {
+public interface RestfullAvatarFileIO {
 
     @POST
-    @Path("/upload")
+    @Path("/upload-avatar")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
     @Produces(MediaType.APPLICATION_JSON)
     String upload(InputStream input) throws IOException;
 
     @GET
-    @Path("/download")
+    @Path("/download-avatar")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    Response download(@QueryParam("id") long id) throws IOException;
+    Response download() throws IOException;
 
 }
