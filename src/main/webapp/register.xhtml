@@ -11,12 +11,12 @@
     </ui:define>
     <ui:define name="content">
         <h1>Register</h1>
-        <form method="post" action="#">
+        <h:form>
             <fieldset>
                 <ol>
                     <li>
-                        <label for="name" class="mainlabel">Name:</label>
-                        <input id="name" type="text" />
+                        <h:outputLabel for="name" styleClass="mainlabel">Name</h:outputLabel>
+                        <h:inputText label="Name" id="name" value=""/>
                     </li>
                     <li>
                         <label for="lastname" class="mainlabel">Last name:</label>
@@ -44,8 +44,6 @@
                 </ol>
                 <input type="submit" value="Save changes" />
             </fieldset>
-        </form>
-        <h:form>
             <h:inputText label="Username" id="username"/>
             <h:inputText label="Password" id="password"/>
             <h:commandLink action="#{login.logout}" value="Logout"/>

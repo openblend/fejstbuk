@@ -40,7 +40,7 @@ public abstract class AbstractEntity implements Serializable {
     public boolean equals(Object obj) {
         if (obj == null)
             return false;
-        if (getClass().equals(obj.getClass()) == false)
+        if (!getClass().equals(obj.getClass()))
             return false;
 
         AbstractEntity other = (AbstractEntity) obj;
