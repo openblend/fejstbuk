@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * @author Matej Lazar
@@ -28,6 +29,6 @@ public interface RestfullFileIO {
     @GET
     @Path("/download")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    byte[] download(@QueryParam("id") long id) throws IOException;
+    Response download(@QueryParam("id") long id) throws IOException;
 
 }
