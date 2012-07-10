@@ -1,14 +1,15 @@
 package org.openblend.fejstbuk.ui;
 
-import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 
 /**
  * @author <a href="mailto:tomaz.cerar@redhat.com">Tomaz Cerar</a>
  */
-@SessionScoped
+@ConversationScoped
 @Named
-public class RegisterAction {
+public class RegisterAction implements Serializable {
     private String name;
     private String lastName;
 
