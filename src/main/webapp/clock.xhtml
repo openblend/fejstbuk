@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: luksa
+  Date: 10.7.12
+  Time: 11:32
+-->
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Clock</title>
+</h:head>
+
+<h:body>
+
+    <h:form>
+
+        <h:inputText value="#{clockController.model.hours}" id="hours"/>
+        :
+        <h:inputText value="#{clockController.model.minutes}" id="minutes"/>
+
+        <h:commandButton
+            action="#{clockController.increaseMinutes}"
+            value="min+">
+
+            <f:ajax execute="@form" render="hours minutes"/>
+
+        </h:commandButton>
+    </h:form>
+
+
+</h:body>
+
+</html>
