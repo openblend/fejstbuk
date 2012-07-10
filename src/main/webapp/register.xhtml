@@ -41,7 +41,18 @@
                             <f:selectItem itemValue="FEMALE" itemLabel="female"/>
                         </h:selectOneRadio>
                     </li>
+                </ol>
 
+                <ol class="cont">
+                    <li>
+                        <h:outputLabel for="username" styleClass="mainlabel">Username:</h:outputLabel>
+                        <h:inputText id="username" value="#{registerAction.username}"/>
+                    </li>
+
+                    <li>
+                        <h:outputLabel for="password" styleClass="mainlabel">Password:</h:outputLabel>
+                        <h:inputSecret id="password" value="#{registerAction.password}"/>
+                    </li>
                 </ol>
                 <h:messages />
                 <h:commandButton

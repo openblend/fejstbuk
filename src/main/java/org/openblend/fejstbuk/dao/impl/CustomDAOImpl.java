@@ -177,4 +177,14 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
         query.setParameter("u", username);
         return getSingleResult(query);
     }
+
+    public boolean createUser(User user) {
+        if (findUser(user.getUsername()) == null) {
+            getEM().persist(user);
+            return true;
+        }
+
+       return false;
+    }
+
 }
