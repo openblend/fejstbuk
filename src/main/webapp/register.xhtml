@@ -16,11 +16,11 @@
                 <ol>
                     <li>
                         <h:outputLabel for="name" styleClass="mainlabel">Name</h:outputLabel>
-                        <h:inputText label="Name" id="name" value=""/>
+                        <h:inputText label="Name" id="name" value="#{registerAction.name}"/>
                     </li>
                     <li>
-                        <label for="lastname" class="mainlabel">Last name:</label>
-                        <input id="lastname" type="text" />
+                        <h:outputLabel for="lastname" styleClass="mainlabel">Last name:</h:outputLabel>
+                        <h:inputText id="lastname" value="#{registerAction.lastName}"/>
                     </li>
                     <li>
                         <label for="age" class="mainlabel">Age:</label>
