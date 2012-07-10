@@ -4,4 +4,5 @@
 .idea/
 .DS_Store
 .metadata
+ignored
 target/
