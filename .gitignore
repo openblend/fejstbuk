@@ -3,4 +3,5 @@
 *.ipr
 .idea/
 .DS_Store
+.metadata
 target/
