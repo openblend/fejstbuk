@@ -1,7 +1,6 @@
 package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
-
 import javax.inject.Inject;
 
 import org.openblend.fejstbuk.dao.CustomDAO;
@@ -13,6 +12,8 @@ import org.openblend.fejstbuk.qualifiers.Current;
  */
 public class AbstractUI implements Serializable {
     protected User current;
+
+
     protected CustomDAO dao;
 
     @Inject
