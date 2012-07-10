@@ -20,6 +20,8 @@
 
                 <h:commandLink action="#{login.uiLogin}" value="Login"/>
             </h:form>
+            <br />
+            Or <h:outputLink value="/register">register</h:outputLink> as a new user.
         </ui:fragment>
         <ui:fragment rendered="#{login.logged}">
             <span>You are logged in as #{login.current.name} #{login.current.surname}.</span>
