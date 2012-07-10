@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Matej Lazar
  */
-@WebFilter("/*")
+//@WebFilter("/*")
 public class LoginFilter implements Filter {
 
     @Inject
@@ -48,9 +48,12 @@ public class LoginFilter implements Filter {
     }
 
     private boolean isAuthRequired(HttpServletRequest request) {
-        return !request.getRequestURI().equals("/login") &&
-               !request.getRequestURI().startsWith("/_common") &&
-               !request.getRequestURI().startsWith("/javax.faces.resource/");
+        String uri = request.getRequestURI();
+        return !uri.equals("/login") &&
+               !uri.startsWith("/register") &&
+               !uri.startsWith("/_common") &&
+               !uri.startsWith("/javax.faces.resource/") &&
+               !uri.startsWith("/h2/");
 
     }
 

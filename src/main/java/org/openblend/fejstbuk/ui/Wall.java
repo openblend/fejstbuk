@@ -2,7 +2,6 @@ package org.openblend.fejstbuk.ui;
 
 import java.util.List;
 import java.util.Set;
-
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 

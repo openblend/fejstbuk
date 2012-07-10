@@ -2,13 +2,12 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
         >
 
 <ui:composition template="/layout/template.xhtml">
-    <ui:define name="sidebar">
 
-    </ui:define>
+    <ui:define name="pageTitle">Register</ui:define>
     <ui:define name="content">
         <h1>Register</h1>
         <h:form>
@@ -23,30 +22,33 @@
                         <h:inputText id="lastname" value="#{registerAction.lastName}"/>
                     </li>
                     <li>
-                        <label for="age" class="mainlabel">Age:</label>
-                        <input id="age" type="text" />
+                        <h:outputLabel for="age" styleClass="mainlabel">Age:</h:outputLabel>
+                        <h:inputText id="age"
+                                     value="#{registerAction.age}" />
                     </li>
                     <li>
-                        <label class="mainlabel">Gender:</label>
-                        <input id="male" name="gender" type="radio" />
-                        <label for="male">male</label>
-                        <input id="female" name="gender" type="radio" />
-                        <label for="female">female</label>
+                        <h:outputLabel for="country" styleClass="mainLabel">Country: </h:outputLabel>
+                        <h:selectOneMenu id="country" value="#{registerAction.country}">
+                            <f:selectItem itemValue="US" itemLabel="USA"/>
+                            <f:selectItem itemValue="DE" itemLabel="Germany"/>
+                            <f:selectItem itemValue="AT" itemLabel="Austria"/>
+                        </h:selectOneMenu>
                     </li>
                     <li>
-                        <label for="country" class="mainlabel">Country:</label>
-                        <select id="country">
-                            <option>USA</option>
-                            <option>Germany</option>
-                            <option>Austria</option>
-                        </select>
+                        <h:outputLabel for="gender" styleClass="mainlabel">Gender:</h:outputLabel>
+                        <h:selectOneRadio id="gender" value="#{registerAction.gender}" >
+                            <f:selectItem itemValue="MALE" itemLabel="male"/>
+                            <f:selectItem itemValue="FEMALE" itemLabel="female"/>
+                        </h:selectOneRadio>
                     </li>
+
                 </ol>
-                <input type="submit" value="Save changes" />
+                <h:messages />
+                <h:commandButton
+                        value="Register"
+                        action="#{registerAction.register}" />
+
             </fieldset>
-            <h:inputText label="Username" id="username"/>
-            <h:inputText label="Password" id="password"/>
-            <h:commandLink action="#{login.logout}" value="Logout"/>
         </h:form>
     </ui:define>
 </ui:composition>

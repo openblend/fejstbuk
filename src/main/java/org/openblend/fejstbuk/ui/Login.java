@@ -1,7 +1,6 @@
 package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
-
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -21,12 +20,14 @@ import org.openblend.fejstbuk.util.SecurityUtils;
 @Named("login")
 public class Login implements Serializable {
 
-    @Inject private Credentials credentials;
+    @Inject
+    private Credentials credentials;
 
     private User current;
     private CustomDAO dao;
 
-    @Produces @Current
+    @Produces
+    @Current
     public User getCurrent() {
         return current;
     }
@@ -50,7 +51,7 @@ public class Login implements Serializable {
         boolean ret = login(credentials.getUsername(), credentials.getPassword());
         if (!ret) {
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Authentication failed!"));
+                    new FacesMessage("Authentication failed!"));
         }
 
     }
