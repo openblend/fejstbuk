@@ -14,6 +14,11 @@
         <view-id value="/home.xhtml"/>
     </url-mapping>
 
+    <url-mapping id="home">
+        <pattern value="/home"/>
+        <view-id value="/home.xhtml"/>
+    </url-mapping>
+
     <url-mapping id="login">
         <pattern value="/login"/>
         <view-id value="/login.xhtml"/>

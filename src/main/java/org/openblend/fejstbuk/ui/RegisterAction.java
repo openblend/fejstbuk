@@ -1,6 +1,7 @@
 package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
+
 import javax.ejb.Stateful;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
@@ -98,7 +99,7 @@ public class RegisterAction implements Serializable {
         this.password = password;
     }
 
-    public void register(){
+    public String register(){
         User u = new User();
         u.setName(name);
         u.setSurname(lastName);
@@ -110,7 +111,9 @@ public class RegisterAction implements Serializable {
         {
            FacesContext.getCurrentInstance().addMessage(null,
               new FacesMessage("Username is taken already. Try choose another :)"));
+           return "registration-faild";
         }
+        return "registered";
     }
 
     @Inject
