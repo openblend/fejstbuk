@@ -34,7 +34,7 @@
                         <f:convertDateTime pattern="H:mm:ss 'ago'" />
                     </h:outputText>  </li>
                     <li class="option like"><a href="#">Like</a></li>
-                    <li class="option comment"><a href="#" onclick="$('#comment-#{status.id}').toggle();">Comment</a></li>
+                    <li class="option comment"><a onclick="$('#comment-#{status.id}').toggle();" style="cursor: pointer;">Comment</a></li>
                 </ul>
  					 <div class="comment" id="comment-#{status.id}" style="display:none">
 					    <h:form method="post" action="#" class="addcommentform">
