@@ -1,6 +1,7 @@
 package org.openblend.fejstbuk.domain;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 
 /**
@@ -16,9 +17,10 @@ public class Status extends Linked {
     public Status(String status) {
         this.status = status;
     }
-    public Status(String status,Date timestamp) {
+    public Status(String status,Date timestamp, long id) {
         this.status = status;
         setTimestamp(timestamp);
+        setId(id);
     }
 
 

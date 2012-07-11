@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
+
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
-import org.openblend.fejstbuk.domain.Post;
 import org.openblend.fejstbuk.domain.Status;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.LoggedIn;
@@ -37,16 +35,10 @@ public class NewsAction {
     @Named
     public List<Status> getNewsFeed() {
         List<Status> list = new ArrayList<Status>();
-        list.add(new Status("hello",getRandomTime()));
-        Status s = new Status("yello");
-        s.setTimestamp(getRandomTime());
-        list.add(s);
-        s = new Status("danes je lep dan");
-        s.setTimestamp(getRandomTime());
-        list.add(s);
-        s = new Status("Zvečer bo toča... menda.");
-        s.setTimestamp(getRandomTime());
-        list.add(s);
+        list.add(new Status("hello",getRandomTime(), 1));
+        list.add(new Status("yello",getRandomTime(), 2));
+        list.add(new Status("danes je lep dan",getRandomTime(), 3));
+        list.add(new Status("Zvečer bo toča... menda.",getRandomTime(), 4));
         return list;
     }
     private Date getRandomTime(){

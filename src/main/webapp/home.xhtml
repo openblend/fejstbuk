@@ -14,7 +14,7 @@
     <ui:define name="content">
         <h1>News feed</h1>
         <ul class="newsfeed">
-            <ui:repeat value="#{newsFeed}" var="status">
+            <ui:repeat value="#{newsFeed}" var="status" >
             <li class="article">
                 <a class="photo" href="/profile-friend.html">
                     <img src="/_common/images/tmp/avatar-5-s.jpg" alt="Bridget von Hammersmark" />
@@ -34,8 +34,16 @@
                         <f:convertDateTime pattern="H:mm:ss 'ago'" />
                     </h:outputText>  </li>
                     <li class="option like"><a href="#">Like</a></li>
-                    <li class="option comment"><a class="ajax" href="/_ajax_comment.html">Comment</a></li>
+                    <li class="option comment"><a href="#" onclick="$('#comment-#{status.id}').toggle();">Comment</a></li>
                 </ul>
+ 					 <div class="comment" id="comment-#{status.id}" style="display:none">
+					    <h:form method="post" action="#" class="addcommentform">
+					       <fieldset>
+					          <label for="comment">Comment:</label>
+					          <h:inputTextarea value="#{status.status}" />
+					       </fieldset>
+					    </h:form>
+					 </div>
             </li>
             </ui:repeat>
         </ul>
