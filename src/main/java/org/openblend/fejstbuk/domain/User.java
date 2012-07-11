@@ -2,13 +2,18 @@ package org.openblend.fejstbuk.domain;
 
 import java.util.Date;
 import java.util.Set;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
@@ -27,9 +32,11 @@ public class User extends AbstractEntity {
     private Set<Linked> posts;
     private Set<Comment> comments;
     private Set<Like> likes;
-    private String username;
+    private int age;
     private String password;
+    private String email;
     private byte[] image;
+    private int friendCount;
 
     public String getName() {
         return name;
@@ -90,8 +97,8 @@ public class User extends AbstractEntity {
     }
 
     @OneToMany
-    @JoinColumn(name="user_id", insertable=false, updatable=false)
-    @Where(clause="dtype='Status' or dtype='Image' or dtype='Question'")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @Where(clause = "dtype='Status' or dtype='Image' or dtype='Question'")
     public Set<Linked> getPosts() {
         return posts;
     }
@@ -101,8 +108,8 @@ public class User extends AbstractEntity {
     }
 
     @OneToMany
-    @JoinColumn(name="user_id", insertable=false, updatable=false)
-    @Where(clause="dtype='Comment'")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @Where(clause = "dtype='Comment'")
     public Set<Comment> getComments() {
         return comments;
     }
@@ -120,14 +127,6 @@ public class User extends AbstractEntity {
         this.likes = likes;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -143,5 +142,39 @@ public class User extends AbstractEntity {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    @Column(name = "EMAIL")
+    @Size(max = 50)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Min(13)
+    @Max(60)
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Column(name = "FRIEND_COUNT")
+    public int getFriendCount() {
+        return friendCount;
+    }
+
+    public void setFriendCount(int friendCount) {
+        this.friendCount = friendCount;
+    }
+
+    @PostLoad
+    void postLoad() {
+        friendCount = getFriends().size();
     }
 }

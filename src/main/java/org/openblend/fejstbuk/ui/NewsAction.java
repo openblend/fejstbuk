@@ -1,6 +1,5 @@
 package org.openblend.fejstbuk.ui;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +13,7 @@ import javax.persistence.PersistenceContext;
 
 import org.openblend.fejstbuk.domain.Status;
 import org.openblend.fejstbuk.domain.User;
+import org.openblend.fejstbuk.qualifiers.Current;
 import org.openblend.fejstbuk.qualifiers.LoggedIn;
 
 /**
@@ -27,6 +27,7 @@ public class NewsAction {
 
 
     @Inject
+    @Current
     @LoggedIn
     private User user;
 
@@ -34,23 +35,16 @@ public class NewsAction {
     @Produces
     @Named
     public List<Status> getNewsFeed() {
-        List<Status> list = new ArrayList<Status>();
-        list.add(new Status("hello",getRandomTime(), 1));
-        list.add(new Status("yello",getRandomTime(), 2));
-        list.add(new Status("danes je lep dan",getRandomTime(), 3));
-        list.add(new Status("Zvečer bo toča... menda.",getRandomTime(), 4));
-        return list;
-    }
-    private Date getRandomTime(){
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.HOUR,-(int)(Math.random()*60));
-        c.add(Calendar.MINUTE, (int)(Math.random()*60));
-        c.add(Calendar.SECOND, (int)(Math.random()*60));
+        System.out.println("userid: " + user.getId());
+        return em.createQuery("select a from Status a where a.user.id = :userId", Status.class)
+                .setParameter("userId", user.getId())
+                .getResultList();
 
-        return c.getTime();
     }
-    public Date getTimeDiff(Date date){
-        Calendar c =  Calendar.getInstance();
+
+    public Date getTimeDiff(Date date) {
+        if (date == null) { return null; }
+        Calendar c = Calendar.getInstance();
         c.setTime(date);
         long postTime = c.getTimeInMillis();
         long diff = System.currentTimeMillis() - postTime;

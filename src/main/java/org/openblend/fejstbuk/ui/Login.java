@@ -12,6 +12,7 @@ import javax.inject.Named;
 import org.openblend.fejstbuk.dao.CustomDAO;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.Current;
+import org.openblend.fejstbuk.qualifiers.LoggedIn;
 import org.openblend.fejstbuk.util.SecurityUtils;
 
 /**
@@ -30,6 +31,8 @@ public class Login implements Serializable {
     @Named
     @Produces
     @Current
+    @LoggedIn
+    @Named("currentUser")
     public User getCurrent() {
         return current;
     }
@@ -49,13 +52,15 @@ public class Login implements Serializable {
         return (current != null);
     }
 
-    public void uiLogin() {
+    public String uiLogin() {
         boolean ret = login(credentials.getUsername(), credentials.getPassword());
         if (!ret) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Authentication failed!"));
+            return null;
         }
 
+        return "home";
     }
 
     public void logout() {

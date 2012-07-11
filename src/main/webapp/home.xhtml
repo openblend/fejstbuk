@@ -9,10 +9,12 @@
 <ui:composition template="/layout/template.xhtml">
     <ui:define name="pageTitle">Home</ui:define>
     <ui:define name="sidebar">
-        <ui:include src="/includes/profile.xhtml" />
+        <ui:include src="/layout/includes/profile.xhtml" />
     </ui:define>
     <ui:define name="content">
         <h1>News feed</h1>
+        <h:panelGroup id="news-feed">
+        <ui:include src="layout/includes/new-post.xhtml" />
         <ul class="newsfeed">
             <ui:repeat value="#{newsFeed}" var="status" >
             <li class="article">
@@ -47,6 +49,7 @@
             </li>
             </ui:repeat>
         </ul>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>
 </html>

@@ -7,29 +7,33 @@
 
 <ui:composition template="/layout/template.xhtml">
     <ui:define name="sidebar">
-
+        <br/>
     </ui:define>
     <ui:define name="content">
-        <ui:fragment rendered="#{!login.logged}">
-            <h:form>
-                <h:outputLabel for="username">Username:</h:outputLabel>
-                <h:inputText id="username" value="#{credentials.username}"/>
-
-                <h:outputLabel for="password">Password:</h:outputLabel>
-                <h:inputSecret id="password" value="#{credentials.password}"/>
-
-                <h:commandLink action="#{login.uiLogin}" value="Login"/>
-            </h:form>
-            <br />
-            Or <h:outputLink value="/register">register</h:outputLink> as a new user.
-        </ui:fragment>
+        <h:form rendered="#{!login.logged}">
+            <fieldset>
+                <ol>
+                    <li>
+                        <h:outputLabel for="username" styleClass="mainlabel">Username:</h:outputLabel>
+                        <h:inputText id="username" value="#{credentials.username}"/>
+                    </li>
+                    <li>
+                        <h:outputLabel for="password" styleClass="mainlabel">Password:</h:outputLabel>
+                        <h:inputSecret id="password" value="#{credentials.password}"/>
+                    </li>
+                </ol>
+                <h:messages/>
+                <h:commandButton action="#{login.uiLogin}" value="Login"/>
+            </fieldset>
+            <p>Or <h:outputLink value="/register">register</h:outputLink> as a new user.</p>
+        </h:form>
         <ui:fragment rendered="#{login.logged}">
             <span>You are logged in as #{login.current.name} #{login.current.surname}.</span>
             <h:form>
                 <h:commandLink action="#{login.logout}" value="Logout"/>
             </h:form>
         </ui:fragment>
-        <h:messages/>
+
     </ui:define>
 </ui:composition>
 </html>

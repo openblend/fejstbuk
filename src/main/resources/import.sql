@@ -1,1 +1,2 @@
-insert into User (id, name, surname, username, password) values (1, 'John', 'Doe', 'johnd', 'A4045784DEBA510575DB073185148121');
+insert into User (id, name, surname, email, password,age,location) values (1, 'John', 'Doe', 'test@test.com', 'A4045784DEBA510575DB073185148121',25,'Slovenia');
+insert into User (id, name, surname, email, password,age,location) values (2, 'Janez', 'Novak', 'janez@test.com', 'A4045784DEBA510575DB073185148121',25,'Universe');

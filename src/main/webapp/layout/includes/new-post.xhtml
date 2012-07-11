@@ -1,0 +1,13 @@
+<h:form xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+        id="new-post-form">
+    <div id="new-post">
+        <h:inputTextarea value="#{newPostAction.text}">
+
+        </h:inputTextarea>
+        <h:commandButton value="Post" action="#{newPostAction.post}">
+
+        </h:commandButton>
+
+    </div>
+</h:form>
