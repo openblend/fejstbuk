@@ -28,7 +28,6 @@ public class Login implements Serializable {
     private User current;
     private CustomDAO dao;
 
-    @Named
     @Produces
     @Current
     @LoggedIn

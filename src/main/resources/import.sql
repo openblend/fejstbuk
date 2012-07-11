@@ -1,2 +1,2 @@
-insert into User (id, name, surname, email, password,age,location) values (1, 'John', 'Doe', 'test@test.com', 'A4045784DEBA510575DB073185148121',25,'Slovenia');
-insert into User (id, name, surname, email, password,age,location) values (2, 'Janez', 'Novak', 'janez@test.com', 'A4045784DEBA510575DB073185148121',25,'Universe');
+insert into User (id, name, surname, email, password,age,location,gender,friend_count) values (1, 'John', 'Doe', 'test@test.com', 'A4045784DEBA510575DB073185148121',25,'Slovenia',0,0);
+insert into User (id, name, surname, email, password,age,location,gender,friend_count) values (2, 'Janez', 'Novak', 'janez@test.com', 'A4045784DEBA510575DB073185148121',25,'Universe',0,0);
