@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.StreamingOutput;
 
+import org.openblend.fejstbuk.dao.CustomDAO;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.Current;
 import org.openblend.fejstbuk.util.IOUtils;
@@ -23,6 +24,9 @@ public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
 
     @Inject @Current
     User user;
+
+    @Inject
+    CustomDAO dao;
 
     @Override
     public String upload(InputStream input) throws IOException {
@@ -38,12 +42,13 @@ public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
     }
 
     @Override
-    public Response download() throws IOException {
+    public Response download(long uid) throws IOException {
 
-        if (user == null) {
-            return Response.status(Status.NOT_FOUND).entity("User is not logged in.").build();
-        }
+//        if (user == null) {
+//            return Response.status(Status.NOT_FOUND).entity("User is not logged in.").build();
+//        }
 
+        dao.find(User.class, uid);
 
         byte[] image = user.getImage();
 

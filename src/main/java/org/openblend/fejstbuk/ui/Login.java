@@ -1,6 +1,7 @@
 package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -26,6 +27,7 @@ public class Login implements Serializable {
     private User current;
     private CustomDAO dao;
 
+    @Named
     @Produces
     @Current
     public User getCurrent() {
