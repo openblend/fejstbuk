@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.enterprise.inject.Stereotype;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Qualifier;
 
 /**
@@ -13,7 +14,7 @@ import javax.inject.Qualifier;
  */
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Stereotype
-@Current
+@Qualifier
+
 public @interface LoggedIn {
 }

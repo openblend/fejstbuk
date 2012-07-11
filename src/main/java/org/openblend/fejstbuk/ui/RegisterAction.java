@@ -2,6 +2,7 @@ package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.openblend.fejstbuk.dao.CustomDAO;
+import org.openblend.fejstbuk.domain.Gender;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.util.SecurityUtils;
 
@@ -23,7 +25,7 @@ import org.openblend.fejstbuk.util.SecurityUtils;
 @Named
 @Stateful
 public class RegisterAction implements Serializable {
-
+    @Inject
     private CustomDAO dao;
 
     private String name;
@@ -31,7 +33,7 @@ public class RegisterAction implements Serializable {
     private Integer age;
     private String gender;
     private String country;
-    private String username;
+    private String email;
     private String password;
 
     public String getName() {
@@ -43,7 +45,7 @@ public class RegisterAction implements Serializable {
     }
 
     @NotNull(message = "Prosim vnesi priimek")
-    @Size(min = 2,message = "priimek mora biti vsaj dva znaka")
+    @Size(min = 2, message = "priimek mora biti vsaj dva znaka")
     public String getLastName() {
         return lastName;
     }
@@ -56,8 +58,8 @@ public class RegisterAction implements Serializable {
         this.age = age;
     }
 
-    @Min(value = 13,message = "Premlad si")
-    @Max(value = 50,message = "Dedi zate ni fejstbuk")
+    @Min(value = 13, message = "Premlad si")
+    @Max(value = 50, message = "Dedi zate ni fejstbuk")
     public Integer getAge() {
         return age;
     }
@@ -78,43 +80,39 @@ public class RegisterAction implements Serializable {
         return country;
     }
 
-    public String getUsername()
-    {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username)
-    {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public void register(){
+    public String register() {
         User u = new User();
         u.setName(name);
         u.setSurname(lastName);
-        u.setUsername(username);
-        String hashed = SecurityUtils.hash(username, password);
+        u.setEmail(email);
+        u.setAge(age);
+        u.setGender(Gender.valueOf(gender));
+        u.setLocation(country);
+        String hashed = SecurityUtils.hash(email, password);
         u.setPassword(hashed);
         boolean created = dao.createUser(u);
-        if (!created)
-        {
-           FacesContext.getCurrentInstance().addMessage(null,
-              new FacesMessage("Username is taken already. Try choose another :)"));
+        if (!created) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email is registered already. Try choose another :)"));
         }
+        System.out.println("user created");
+        return "login";
     }
 
-    @Inject
-    public void setDao(CustomDAO dao) {
-        this.dao = dao;
-    }
+
 }

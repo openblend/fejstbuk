@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Matej Lazar
  */
-//@WebFilter("/*")
+@WebFilter("/*")
 public class LoginFilter implements Filter {
 
     @Inject

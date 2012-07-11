@@ -21,10 +21,12 @@
 					<a id="logo" href="/">
 						<img src="/_common/images/identity/logo.png" alt="jfacebook" />
 					</a>
+                    <ui:fragment rendered="#{login.logged}">
 					<ul class="toplinks">
 						<li class="edit"><h:link outcome="/profile.xhtml">My profile</h:link></li>
 						<li class="logout"><a href="#">Logout</a></li>
 					</ul>
+                    </ui:fragment>
 					<form method="post" action="/searchresults.html" class="searchform">
 						<fieldset>
 							<label for="query">Search friends:</label>
@@ -38,6 +40,7 @@
 			<div id="body">
 				<div class="w">
 					<div id="sidebar">
+                        <br />
                         <ui:insert name="sidebar"/>
 					</div>
 					<div id="content">
