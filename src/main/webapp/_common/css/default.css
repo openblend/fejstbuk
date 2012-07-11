@@ -250,13 +250,18 @@ h3 {
     width: 600px;
     float: left;
 }
-#new-post{
+
+#new-post {
 
 }
-#new-post textarea{
-    width: 100%;
+
+#new-post textarea {
     height: 50px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 500px;
 }
+
 #logo {
     display: block;
     float: left;
