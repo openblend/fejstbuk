@@ -41,8 +41,8 @@
  					 <div class="comment" id="comment-#{status.id}" style="display:none">
 					    <h:form method="post" action="#" class="addcommentform">
 					       <fieldset>
-					          <label for="comment">Comment:</label>
-					          <h:inputTextarea value="#{status.status}" />
+					          <h:outputLabel for="comment">Comment:</h:outputLabel>
+					          <h:inputTextarea id="comment" value="#{status.status}" />
 					       </fieldset>
 					    </h:form>
 					 </div>
