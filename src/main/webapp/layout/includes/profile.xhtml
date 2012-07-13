@@ -6,13 +6,13 @@
 <ui:fragment >
 	<div id="profile">
 	    <span class="photo">
-	        <img src="/rest/file/download-avatar?uid=#{currentUser.id}" alt="Lt. Aldo Raine" height="160px"/>
+	        <img src="/rest/file/download-avatar/#{currentUser.id}" alt="Lt. Aldo Raine" height="160px"/>
 	    </span>
 	    <span class="name">#{currentUser.name} #{currentUser.surname}</span>
 	    <span class="asl">#{currentUser.age}, #{currentUser.gender.name()}, #{currentUser.location}</span>
 	    <dl class="friendcount">
 	        <dt>Friends:</dt>
-	        <dd>#{currentUser.friendCount}</dd>
+	        <dd>#{currentUser.friends.size()}</dd>
 	    </dl>
 	    <h:link styleClass="edit-profile" outcome="/profile-edit.xhtml">Edit my profile</h:link>
 	</div>

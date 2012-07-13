@@ -12,13 +12,13 @@ import org.openblend.fejstbuk.domain.User;
 @Named("profile")
 public class Profile extends AbstractUI {
     public String addFriend(long friendId) {
-        User friend = dao.find(User.class, friendId);
+        User friend = em.find(User.class, friendId);
         dao.addFriend(current, friend);
         return "home.xhtml";
     }
 
     public String removeFriend(long friendId) {
-        User friend = dao.find(User.class, friendId);
+        User friend = em.find(User.class, friendId);
         dao.removeFriend(current, friend);
         return "home.xhtml";
     }

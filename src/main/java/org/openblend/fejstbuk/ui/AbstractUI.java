@@ -2,8 +2,9 @@ package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
-import org.openblend.fejstbuk.dao.CustomDAO;
+import org.openblend.fejstbuk.dao.FacebookDAO;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.Current;
 
@@ -13,16 +14,16 @@ import org.openblend.fejstbuk.qualifiers.Current;
 public class AbstractUI implements Serializable {
     protected User current;
 
+    @Inject
+    protected FacebookDAO dao;
 
-    protected CustomDAO dao;
+    @Inject
+    protected EntityManager em;
 
     @Inject
     public void setCurrent(@Current User current) {
         this.current = current;
     }
 
-    @Inject
-    public void setDao(CustomDAO dao) {
-        this.dao = dao;
-    }
+
 }

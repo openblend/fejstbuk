@@ -19,7 +19,7 @@ public class ProfileEdit extends AbstractUI {
     }
 
     public String save() {
-        dao.merge(current);
+        em.merge(current);
         return "";
     }
 

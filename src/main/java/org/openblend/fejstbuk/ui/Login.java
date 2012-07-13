@@ -1,15 +1,15 @@
 package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
-
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
-import org.openblend.fejstbuk.dao.CustomDAO;
+import org.openblend.fejstbuk.dao.FacebookDAO;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.Current;
 import org.openblend.fejstbuk.qualifiers.LoggedIn;
@@ -26,18 +26,25 @@ public class Login implements Serializable {
     private Credentials credentials;
 
     private User current;
-    private CustomDAO dao;
+
+    @Inject
+    private FacebookDAO dao;
+
+    @Inject
+    private EntityManager em;
 
     @Produces
     @Current
     @LoggedIn
     @Named("currentUser")
     public User getCurrent() {
+        if (current==null)return null;
+        current =  em.getReference(User.class,current.getId());
         return current;
     }
 
     public boolean isLogged() {
-        return (getCurrent() != null);
+        return (current != null);
     }
 
     public boolean login(String username, String password) {
@@ -66,8 +73,4 @@ public class Login implements Serializable {
         current = null;
     }
 
-    @Inject
-    public void setDao(CustomDAO dao) {
-        this.dao = dao;
-    }
 }

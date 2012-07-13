@@ -1,18 +1,17 @@
-package org.openblend.fejstbuk.dao.impl;
+package org.openblend.fejstbuk.dao;
 
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.sql.rowset.serial.SerialBlob;
 
-import org.openblend.fejstbuk.dao.CustomDAO;
 import org.openblend.fejstbuk.domain.Comment;
 import org.openblend.fejstbuk.domain.Image;
 import org.openblend.fejstbuk.domain.Like;
@@ -27,16 +26,13 @@ import org.openblend.fejstbuk.domain.User;
  */
 @SuppressWarnings("unchecked")
 @Stateless
-public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
-    @PersistenceContext
+public class FacebookDAO {
+    @Inject
     private EntityManager em;
 
-    protected EntityManager getEM() {
-        return em;
-    }
 
     public void addFriend(User owner, User friend) {
-        owner = merge(owner);
+        owner = em.merge(owner);
         Set<User> friends = owner.getFriends();
         if (friends == null) {
             friends = new HashSet<User>();
@@ -46,7 +42,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
     }
 
     public void removeFriend(User owner, User friend) {
-        owner = merge(owner);
+        owner = em.merge(owner);
         Set<User> friends = owner.getFriends();
         if (friends != null) {
             friends.remove(friend);
@@ -54,7 +50,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
     }
 
     public List<Linked> wall(User owner, int offset, int size) {
-        Query query = getEM().createQuery("select l from Linked l where l.user = :owner order by l.timestamp desc");
+        Query query = em.createQuery("select l from Linked l where l.user = :owner order by l.timestamp desc");
         query.setParameter("owner", owner);
         query.setFirstResult(offset);
         query.setMaxResults(size);
@@ -75,7 +71,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
         st.setStatus(status);
         st.setUser(owner);
         st.setTimestamp(new Date());
-        save(st);
+        em.persist(st);
         addLinked(owner, st);
         return st;
     }
@@ -86,7 +82,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
             im.setImage(new SerialBlob(image));
             im.setUser(owner);
             im.setTimestamp(new Date());
-            save(im);
+            em.persist(im);
             addLinked(owner, im);
             return im;
         } catch (SQLException e) {
@@ -99,7 +95,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
         q.setQuestion(question);
         q.setUser(owner);
         q.setTimestamp(new Date());
-        save(q);
+        em.persist(q);
         addLinked(owner, q);
         return q;
     }
@@ -109,7 +105,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
         comment.setText(text);
         comment.setUser(user);
         comment.setTimestamp(new Date());
-        save(comment);
+        em.persist(comment);
         // linked comments
         Set<Comment> comments = linked.getComments();
         if (comments == null) {
@@ -128,7 +124,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
     }
 
     public void removePost(Post post) {
-        delete(post);
+        em.remove(post);
     }
 
     public Like like(User user, Post post) {
@@ -136,7 +132,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
         like.setPost(post);
         like.setUser(user);
         like.setTimestamp(new Date());
-        save(like);
+        em.persist(like);
         // post likes
         Set<Like> likes = post.getLikes();
         if (likes == null) {
@@ -155,7 +151,7 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
     }
 
     public void unlike(Like like) {
-        delete(like);
+        em.remove(like);
         Post post = like.getPost();
         if (post != null) {
             Set<Like> likes = post.getLikes();
@@ -173,18 +169,18 @@ public class CustomDAOImpl extends AbstractGenericDAO implements CustomDAO {
     }
 
     public User findUser(String username) {
-        Query query = getEM().createQuery("select u from User u where u.email = :u");
+        TypedQuery<User> query = em.createQuery("select u from User u where u.email = :u", User.class);
         query.setParameter("u", username);
-        return getSingleResult(query);
+        return query.getSingleResult();
     }
 
     public boolean createUser(User user) {
         if (findUser(user.getEmail()) == null) {
-            getEM().persist(user);
+            em.persist(user);
             return true;
         }
 
-       return false;
+        return false;
     }
 
 }

@@ -1,9 +1,7 @@
 package org.openblend.fejstbuk.ui;
 
 import java.io.Serializable;
-
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -14,7 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.openblend.fejstbuk.dao.CustomDAO;
+import org.openblend.fejstbuk.dao.FacebookDAO;
 import org.openblend.fejstbuk.domain.Gender;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.util.SecurityUtils;
@@ -27,7 +25,7 @@ import org.openblend.fejstbuk.util.SecurityUtils;
 @Stateful
 public class RegisterAction implements Serializable {
     @Inject
-    private CustomDAO dao;
+    private FacebookDAO dao;
 
     private String name;
     private String lastName;

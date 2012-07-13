@@ -39,7 +39,7 @@ public class Wall extends AbstractUI {
     }
 
     public Comment addComment(long linkedId, String comment) {
-        Linked linked = dao.find(Linked.class, linkedId);
+        Linked linked = em.find(Linked.class, linkedId);
         if (linked != null) {
             return dao.addComment(linked, current, comment);
         }
@@ -47,7 +47,7 @@ public class Wall extends AbstractUI {
     }
 
     public Like addLike(long postId) {
-        Post post = dao.find(Post.class, postId);
+        Post post = em.find(Post.class, postId);
         if (post != null) {
             return dao.like(current, post);
         }
@@ -55,20 +55,18 @@ public class Wall extends AbstractUI {
     }
 
     public void removeLike(long likeId) {
-        Like like = dao.find(Like.class, likeId);
+        Like like = em.find(Like.class, likeId);
         if (like != null) {
             dao.unlike(like);
         }
     }
 
     public Set<User> getFriends() {
-        dao.initializeCollection(current.getFriends());
         return current.getFriends();
     }
 
     public Set<User> getFriends(long userId) {
-        User user = dao.find(User.class, userId);
-        dao.initializeCollection(user.getFriends());
+        User user = em.find(User.class, userId);
         return user.getFriends();
     }
 }

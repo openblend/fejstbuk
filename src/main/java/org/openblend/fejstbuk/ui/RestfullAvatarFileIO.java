@@ -2,14 +2,13 @@ package org.openblend.fejstbuk.ui;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.ejb.Local;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -27,8 +26,8 @@ public interface RestfullAvatarFileIO {
     String upload(InputStream input) throws IOException;
 
     @GET
-    @Path("/download-avatar")
+    @Path("/download-avatar/{uid}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    Response download(@QueryParam("uid") long uid) throws IOException;
+    Response download(@PathParam("uid") long uid) throws IOException;
 
 }

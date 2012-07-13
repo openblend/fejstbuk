@@ -5,14 +5,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.StreamingOutput;
 
-import org.openblend.fejstbuk.dao.CustomDAO;
 import org.openblend.fejstbuk.domain.User;
 import org.openblend.fejstbuk.qualifiers.Current;
 import org.openblend.fejstbuk.util.IOUtils;
@@ -22,11 +21,12 @@ import org.openblend.fejstbuk.util.IOUtils;
  */
 public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
 
-    @Inject @Current
+    @Inject
+    @Current
     User user;
 
     @Inject
-    CustomDAO dao;
+    protected EntityManager em;
 
     @Override
     public String upload(InputStream input) throws IOException {
@@ -48,7 +48,7 @@ public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
 //            return Response.status(Status.NOT_FOUND).entity("User is not logged in.").build();
 //        }
 
-        dao.find(User.class, uid);
+        em.find(User.class, uid);
 
         byte[] image = user.getImage();
 
