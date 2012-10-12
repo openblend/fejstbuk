@@ -1,0 +1,63 @@
+<!DOCTYPE html 	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      lang="sl" xml:lang="sl">
+	<head>
+		<title>#{pageTitle} | jfacebook</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="jfacebook" />
+		<meta name="keywords" content="jfacebook" />
+		<meta name="author" content="Tomaž Cerar, Boštjan Kern" />
+		<meta name="robots" content="index,follow" />
+		<meta name="revisit-after" content="7 days" />
+		<link type="text/css" rel="stylesheet" media="screen,projection" href="/_common/css/default.css" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	</head>
+	<body class="nojs">
+		<div id="site">
+			<div id="header">
+				<div class="w">
+					<a id="logo" href="/">
+						<img src="/_common/images/identity/logo.png" alt="jfacebook" />
+					</a>
+					<ul class="toplinks">
+						<li class="edit"><h:link outcome="/profile.xhtml">My profile</h:link></li>
+						<li class="logout"><a href="#">Logout</a></li>
+					</ul>
+					<form method="post" action="/searchresults.html" class="searchform">
+						<fieldset>
+							<label for="query">Search friends:</label>
+							<input type="text" id="query" />
+							<input type="submit" value="Search" />
+						</fieldset>
+					</form>
+				</div>
+				<hr class="hidden" />
+			</div>
+			<div id="body">
+				<div class="w">
+					<div id="sidebar">
+                        <ui:insert name="sidebar"/>
+					</div>
+					<div id="content">
+                        <ui:insert name="content"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="w">
+				<hr class="hidden" />
+				<h6>&copy; jfacebook</h6>
+				<ul>
+					<li><a rel="external" href="/article.html">About</a></li>
+					<li><a rel="external" href="/article.html">Terms of Service</a></li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="/_common/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="/_common/js/jquery-ui-1.8.21.custom.min.js"></script>
+		<script type="text/javascript" src="/_common/js/jquery.fancybox-1.3.4.js"></script>
+		<script type="text/javascript" src="/_common/js/js.js" ></script>
+	</body>
+</html>
