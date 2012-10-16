@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       lang="sl" xml:lang="sl">
 	<head>
-		<title>#{pageTitle} | jfacebook</title>
+		<title><ui:insert name="pageTitle"/>  | Fejstbuk</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="jfacebook" />
 		<meta name="keywords" content="jfacebook" />
@@ -12,6 +12,7 @@
 		<meta name="revisit-after" content="7 days" />
 		<link type="text/css" rel="stylesheet" media="screen,projection" href="/_common/css/default.css" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<ui:insert name="head"/>
 	</head>
 	<body class="nojs">
 		<div id="site">

@@ -3,9 +3,17 @@
       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
       version="3.0">
 
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>RELOAD_DEVELOPMENT_DIRECTORY</param-name>
+        <param-value>${project.basedir}/src/main/webapp</param-value>
+    </context-param>
 
-   <security-constraint>
-      <display-name>Restrict raw XHTML Documents</display-name>
+    <security-constraint>
+    <display-name>Restrict raw XHTML Documents</display-name>
       <web-resource-collection>
          <web-resource-name>XHTML</web-resource-name>
          <url-pattern>*.xhtml</url-pattern>
