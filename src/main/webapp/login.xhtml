@@ -7,13 +7,22 @@
 
 <ui:composition template="/layout/template.xhtml">
     <ui:define name="sidebar">
-        <h:form>
-            <h:outputLabel for="username" value="Username:"/>
-            <h:inputText id="username" value="#{credentials.username}" />
-            <h:outputLabel for="password">Password:</h:outputLabel>
-            <h:inputSecret id="password" value="#{credentials.password}" />
-            <h:commandLink action="#{login.login}" value="Login" />
-        </h:form>
+       <ui:fragment rendered="#{!login.loggedIn}">
+          <h:form>
+             <h:outputLabel for="username">Username:</h:outputLabel>
+             <h:inputText id="username" value="#{credentials.username}" />
+             <h:outputLabel for="password">Password:</h:outputLabel>
+             <h:inputSecret id="password" value="#{credentials.password}" />
+             <h:commandLink action="#{login.login}" value="Login" />
+          </h:form>
+       </ui:fragment>
+       <ui:fragment rendered="#{login.loggedIn}">
+          <span>You are logged in as #{currentUser}</span>
+          <h:form>
+             <h:commandLink action="#{login.logout}" value="Logout"/>
+          </h:form>
+       </ui:fragment>
+       <h:messages/>
     </ui:define>
     <ui:define name="content">
         Fejstbuk -- 2012
