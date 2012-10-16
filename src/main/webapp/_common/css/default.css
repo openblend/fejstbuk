@@ -169,7 +169,7 @@ h3 {font:bold 18px/1.2 Calibri,Candara,Segoe,Optima,Tahoma,Verdana,Segoe,sans-se
 
 /*	FORMS
 ------------------------------------------------------------ */
-input[type=text] {padding:4px 4px 3px;background:#fff;border:1px solid #000;border-left-color:#29447e;border-top-color:#29447e;box-shadow:inset 1px 1px 3px 0 #555;font:normal 15px/1 Tahoma,Verdana,Segoe,sans-serif;}
+input[type=text],input[type=password] {padding:4px 4px 3px;background:#fff;border:1px solid #000;border-left-color:#29447e;border-top-color:#29447e;box-shadow:inset 1px 1px 3px 0 #555;font:normal 15px/1 Tahoma,Verdana,Segoe,sans-serif;}
 button,input[type=submit],.button {padding:3px 10px;height:26px;background:#5d76aa;cursor:pointer;color:#fff;text-decoration:none;border:1px solid #29447e;text-shadow:0 1px 0 #29447e;box-shadow:inset 1px 1px 0 0 #fff;border-right-color:#000;border-bottom-color:#000;font:bold 13px/1 Tahoma,Verdana,Segoe,sans-serif;}
 button.cancel,.button-cancel {background:#d72626;border:1px solid #000;border-left-color:#ef6767;border-top-color:#ef6767;text-shadow:0 1px 0 #991818;}
 textarea {padding:6px 6px 4px;background:#fff;border:1px solid #000;border-left-color:#29447e;border-top-color:#29447e;box-shadow:inset 1px 1px 3px 0 #555;font:normal 13px/1.5 Tahoma,Verdana,Segoe,sans-serif;}

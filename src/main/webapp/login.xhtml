@@ -9,9 +9,9 @@
     <ui:define name="sidebar">
        <ui:fragment rendered="#{!login.loggedIn}">
           <h:form>
-             <h:outputLabel for="username">Username:</h:outputLabel>
+             <h:outputLabel styleClass="mainlabel" for="username">Username:</h:outputLabel>
              <h:inputText id="username" value="#{credentials.username}" />
-             <h:outputLabel for="password">Password:</h:outputLabel>
+             <h:outputLabel styleClass="mainlabel" for="password">Password:</h:outputLabel>
              <h:inputSecret id="password" value="#{credentials.password}" />
              <h:commandLink action="#{login.login}" value="Login" />
           </h:form>
