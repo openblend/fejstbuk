@@ -1,25 +1,27 @@
 package org.openblend.fejstbuk;
 
-import javax.enterprise.context.ApplicationScoped;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @author <a href="mailto:marko.strukelj@gmail.com">Marko Strukelj</a>
  */
-@ApplicationScoped
+@Stateless
 public class UserManagement
 {
-   private Map<String, String> usersMap = new ConcurrentHashMap<String, String>();
-
-   public UserManagement()
-   {
-      usersMap.put("janez", "blender");
-   }
+   @PersistenceContext
+   private EntityManager em;
 
    public boolean login(String username, String password)
    {
-      String pass = usersMap.get(username);
-      return password.equals(pass);
+      List rs = em.createQuery("select u FROM User u WHERE u.username=?1 AND u.password=?2")
+         .setParameter(1, username)
+         .setParameter(2, password)
+         .setMaxResults(1)
+         .getResultList();
+
+      return rs.size() == 1;
    }
 }
