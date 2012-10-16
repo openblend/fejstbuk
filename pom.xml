@@ -8,6 +8,10 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <properties>
+        <version.cdi.api>1.0-SP4</version.cdi.api>
+   </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -26,4 +30,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>${version.cdi.api}</version>
+                <scope>provided</scope>
+            </dependency>
+    </dependencies>
 </project>
