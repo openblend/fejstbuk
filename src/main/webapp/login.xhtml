@@ -9,9 +9,9 @@
     <ui:define name="sidebar">
         <h:form>
             <h:outputLabel for="username" value="Username:"/>
-            <h:inputText id="username" />
+            <h:inputText id="username" value="#{credentials.username}" />
             <h:outputLabel for="password">Password:</h:outputLabel>
-            <h:inputSecret id="password" />
+            <h:inputSecret id="password" value="#{credentials.password}" />
             <h:commandLink action="#{login.login}" value="Login" />
         </h:form>
     </ui:define>
