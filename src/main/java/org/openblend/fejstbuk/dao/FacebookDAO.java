@@ -172,7 +172,7 @@ public class FacebookDAO {
         TypedQuery<User> query = em.createQuery("select u from User u where u.email = :u", User.class);
         query.setParameter("u", username);
         query.setMaxResults(1);
-        return query.getResultList().isEmpty()?null:query.getResultList().get(0);
+        return query.getResultList().isEmpty() ? null : query.getResultList().get(0);
     }
 
     public boolean createUser(User user) {

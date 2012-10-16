@@ -5,9 +5,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.StreamingOutput;
@@ -19,7 +28,9 @@ import org.openblend.fejstbuk.util.IOUtils;
 /**
  * @author Matej Lazar
  */
-public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
+@Path("/file")
+@ApplicationScoped
+public class RestFileAPI implements Serializable {
 
     @Inject
     @Current
@@ -28,7 +39,10 @@ public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
     @Inject
     protected EntityManager em;
 
-    @Override
+    @POST
+    @Path("/upload-avatar")
+    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
+    @Produces(MediaType.APPLICATION_JSON)
     public String upload(InputStream input) throws IOException {
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -41,8 +55,10 @@ public class RestfullAvatarFileIOImpl implements RestfullAvatarFileIO {
         }
     }
 
-    @Override
-    public Response download(long uid) throws IOException {
+    @GET
+    @Path("/download-avatar/{uid}")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response download(@PathParam("uid") long uid) throws IOException {
 
 //        if (user == null) {
 //            return Response.status(Status.NOT_FOUND).entity("User is not logged in.").build();

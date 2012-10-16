@@ -39,7 +39,7 @@ public class Login implements Serializable {
     @Named("currentUser")
     public User getCurrent() {
         if (current==null)return null;
-        current =  em.getReference(User.class,current.getId());
+        //current =  em.getReference(User.class,current.getId());
         return current;
     }
 

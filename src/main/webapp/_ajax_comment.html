@@ -1,9 +1,9 @@
 <div id="lightbox" class="comment">
-	<form method="post" action="#" class="addcommentform">
+	<form method="post" action="#" class="addcommentform" id="commentForm">
 		<fieldset>
 			<label for="comment">Comment:</label>
 			<textarea id="comment" rows="7" cols="50"></textarea>
-			<input type="submit" value="Post" />
+			<input type="submit" value="Post" onclick="return addComment($('fieldset #comment'),$('a .ajax'))" />
 		</fieldset>
 	</form>
 </div>

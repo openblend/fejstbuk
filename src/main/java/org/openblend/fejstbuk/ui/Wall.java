@@ -3,6 +3,7 @@ package org.openblend.fejstbuk.ui;
 import java.util.List;
 import java.util.Set;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 
 import org.openblend.fejstbuk.domain.Comment;
@@ -68,5 +69,14 @@ public class Wall extends AbstractUI {
     public Set<User> getFriends(long userId) {
         User user = em.find(User.class, userId);
         return user.getFriends();
+    }
+
+    @Produces
+    @Named
+    public List<Status> getWallFeed() {
+        return em.createQuery("select a from Status a where a.user.id = :userId order by a.timestamp desc", Status.class)
+                .setParameter("userId", current.getId())
+                .getResultList();
+
     }
 }

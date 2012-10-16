@@ -18,10 +18,12 @@
        <navigation-case>
            <from-outcome>home</from-outcome>
            <to-view-id>/home.xhtml</to-view-id>
+           <redirect />
        </navigation-case>
        <navigation-case>
            <from-outcome>login</from-outcome>
            <to-view-id>/login.xhtml</to-view-id>
+           <redirect />
        </navigation-case>
    </navigation-rule>
 </faces-config>

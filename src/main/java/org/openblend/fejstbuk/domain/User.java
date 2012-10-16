@@ -54,6 +54,11 @@ public class User extends AbstractEntity {
         this.surname = surname;
     }
 
+    @Transient
+    public String getTitle() {
+        return name + " " + surname;
+    }
+
     public Date getBirth() {
         return birth;
     }

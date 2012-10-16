@@ -41,36 +41,9 @@
         <view-id value="/profile-edit.xhtml"/>
     </url-mapping>
 
-    <url-mapping id="request-password-change">
-        <pattern value="/request-password-change"/>
-        <view-id value="/request-password-change.xhtml"/>
-    </url-mapping>
-
-    <url-mapping id="changeForgottenPwd">
-        <pattern value="/cpw/#{pwdChange.token}"/>
-        <view-id value="/change-forgotten-password.xhtml"/>
-    </url-mapping>
-
-    <url-mapping id="confirmEmail">
-        <pattern value="/ec/#{emailConfirm.token}"/>
-        <view-id value="/confirm-email.xhtml"/>
-    </url-mapping>
-
-    <url-mapping id="checkout">
-        <pattern value="/checkout/#{checkout.merchantId}/#{checkout.orderId}"/>
-        <query-param name="checksum">#{checkout.checksum}</query-param>
-        <view-id value="/checkout.xhtml"/>
-        <action onPostback="false">#{checkout.begin}</action>
-    </url-mapping>
-
-    <url-mapping id="order-details">
-        <pattern value="/order-details/#{orders.viewedOrderId}"/>
-        <view-id value="/order-details.xhtml"/>
-    </url-mapping>
-
-	<url-mapping>
-        <pattern value="/en/#{firstLevel : cmsBean.firstLevel}/#{secondLevel : cmsBean.secondLevel}" />
-        <view-id value="/content/content.xhtml" />
+     <url-mapping id="profile-friend">
+        <pattern value="/f/#{userId : profileFriend.id}"/>
+        <view-id value="/profile-friend.xhtml"/>
     </url-mapping>
 
 </pretty-config>

@@ -21,3 +21,18 @@ $().ready(function () {
 		ajax 				: {type : 'POST'}
 	});
 });
+REST_API_URL = "/rest/post";
+
+function addComment(el,postId){
+    var url = REST_API_URL + "/add-comment?";
+    url += "postId="+postId+"&comment="+el.value;
+    $.ajax({
+      url: url,
+      type : 'POST',
+        success: function(data) {
+            $('.result').html(data);
+            alert('Load was performed.');
+          }
+    });
+    return false;
+}

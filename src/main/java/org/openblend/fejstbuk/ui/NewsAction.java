@@ -36,8 +36,7 @@ public class NewsAction {
     @Named
     public List<Status> getNewsFeed() {
         System.out.println("userid: " + user.getId());
-        return em.createQuery("select a from Status a where a.user.id = :userId", Status.class)
-                .setParameter("userId", user.getId())
+        return em.createQuery("select a from Status a order by a.timestamp desc", Status.class)
                 .getResultList();
 
     }

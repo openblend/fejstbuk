@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+        >
+
+<ui:composition template="/layout/template.xhtml">
+    <ui:define name="pageTitle">#{friendProfile.title}</ui:define>
+    <ui:define name="sidebar">
+        <div id="profile">
+        	    <span class="photo">
+        	        <img src="/rest/file/download-avatar/#{friendProfile.id}" alt="Lt. Aldo Raine" height="160px"/>
+        	    </span>
+        	    <span class="name">#{friendProfile.title}</span>
+        	    <span class="asl">#{friendProfile.age}, #{friendProfile.gender.name()}, #{friendProfile.location}</span>
+        	    <dl class="friendcount">
+        	        <dt>Friends:</dt>
+        	        <dd>#{currentUser.friends.size()}</dd>
+        	    </dl>
+        	</div>
+    </ui:define>
+    <ui:define name="content">
+        <h1>#{friendProfile.title} 's feed</h1>
+        <div class="cms">
+            This profile is locked.
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
