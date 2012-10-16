@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -26,13 +28,11 @@ public class Login implements Serializable {
     private User user;
 
     public void login() {
-       System.out.println("Login.login() invoked!");
-       System.out.println(" Username: " + credentials.getUsername());
-       System.out.println(" Password: " + credentials.getPassword());
-
        boolean success = userManagement.login(credentials.getUsername(), credentials.getPassword());
        if (success) {
           user = new User(credentials.getUsername());
+       } else {
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Authentication failed!"));
        }
     }
 
