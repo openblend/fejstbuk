@@ -13,6 +13,7 @@
         <version.javax.faces.api>2.0.0.Beta1</version.javax.faces.api>
         <version.javax.persistence.hibernate-jpa-2.0-api>1.0.1.Final</version.javax.persistence.hibernate-jpa-2.0-api>
         <version.javax.ejb31.api>1.0.1.Final</version.javax.ejb31.api>
+        <version.javax.servlet>3.0.1</version.javax.servlet>
    </properties>
 
     <build>
@@ -57,6 +58,12 @@
                 <groupId>org.jboss.spec.javax.ejb</groupId>
                 <artifactId>jboss-ejb-api_3.1_spec</artifactId>
                 <version>${version.javax.ejb31.api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${version.javax.servlet}</version>
                 <scope>provided</scope>
             </dependency>
     </dependencies>

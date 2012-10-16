@@ -3,6 +3,7 @@ package org.openblend.fejstbuk.ui;
 import org.openblend.fejstbuk.UserManagement;
 import org.openblend.fejstbuk.model.User;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
@@ -11,6 +12,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author <a href="mailto:marko.strukelj@gmail.com">Marko Strukelj</a>
@@ -34,6 +37,13 @@ public class Login implements Serializable {
        } else {
           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Authentication failed!"));
        }
+    }
+
+    public String logout() {
+       FacesContext facesContext = FacesContext.getCurrentInstance();
+       facesContext.getExternalContext().invalidateSession();
+
+       return "/login.xhtml?faces-redirect=true";
     }
 
     @Produces @Named("currentUser")
