@@ -7,34 +7,25 @@
 
 <ui:composition template="/layout/template.xhtml">
     <ui:define name="sidebar">
-
+        <br/>
     </ui:define>
     <ui:define name="content">
-        <h:form rendered="#{!login.logged}">
-            <fieldset>
-                <ol>
-                    <li>
-                        <h:outputLabel for="username" styleClass="mainlabel">Username:</h:outputLabel>
-                        <h:inputText id="username" value="#{credentials.username}"/>
-                    </li>
-                    <li>
-                        <h:outputLabel for="password" styleClass="mainlabel">Password:</h:outputLabel>
-                        <h:inputSecret id="password" value="#{credentials.password}"/>
-                    </li>
-                </ol>
-                <h:messages/>
-                <h:commandButton action="#{login.uiLogin}" value="Login"/>
-            </fieldset>
-            <p>Or <h:outputLink value="/register">register</h:outputLink> as a new user.</p>
-        </h:form>
-        <ui:fragment rendered="#{login.logged}">
-            <span>You are logged in as #{login.current.name} #{login.current.surname}.</span>
+        <ui:fragment rendered="#{!login.loggedIn}">
+            <h:form>
+                <h:outputLabel styleClass="mainlabel" for="username">Username:</h:outputLabel>
+                <h:inputText id="username" value="#{credentials.username}"/>
+                <h:outputLabel styleClass="mainlabel" for="password">Password:</h:outputLabel>
+                <h:inputSecret id="password" value="#{credentials.password}"/>
+                <h:commandLink action="#{login.login}" value="Login"/>
+            </h:form>
+        </ui:fragment>
+        <ui:fragment rendered="#{login.loggedIn}">
+            <span>You are logged in as #{currentUser.username}</span>
             <h:form>
                 <h:commandLink action="#{login.logout}" value="Logout"/>
             </h:form>
         </ui:fragment>
         <h:messages/>
-        <br />
     </ui:define>
 </ui:composition>
 </html>
